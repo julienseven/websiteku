@@ -1,0 +1,6 @@
+import http from 'node:http';
+import { readFile, stat } from 'node:fs/promises';
+import path from 'node:path';
+const root=path.resolve('dist');
+const types={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.svg':'image/svg+xml','.jpg':'image/jpeg','.png':'image/png','.woff2':'font/woff2','.xml':'application/xml','.txt':'text/plain; charset=utf-8'};
+http.createServer(async(req,res)=>{try{let pathname=decodeURIComponent(new URL(req.url,'http://localhost').pathname);let file=path.resolve(root,'.'+pathname);if(file!==root&&!file.startsWith(root+path.sep)){res.writeHead(403).end();return}let status=200;try{if((await stat(file)).isDirectory())file=path.join(file,'index.html');await stat(file)}catch{file=path.join(root,'404.html');status=404}const content=await readFile(file);res.writeHead(status,{'Content-Type':types[path.extname(file)]??'application/octet-stream','Cache-Control':file.includes(path.sep+'assets'+path.sep)?'public, max-age=31536000, immutable':'no-cache','X-Content-Type-Options':'nosniff'});res.end(req.method==='HEAD'?undefined:content)}catch{res.writeHead(500).end('Unable to load this page.')}}).listen(Number(process.env.PORT??4173),'127.0.0.1',()=>console.log('Production preview: http://127.0.0.1:'+ (process.env.PORT??4173)));

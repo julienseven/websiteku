@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="650" viewBox="0 0 1440 650">
+  <defs>
+    <pattern id="glyphs" width="48" height="30" patternUnits="userSpaceOnUse">
+      <text x="0" y="10" font-family="monospace" font-size="10" fill="#c4552d">.:+*</text>
+      <text x="8" y="25" font-family="monospace" font-size="10" fill="#6d6a65">#:+.</text>
+    </pattern>
+    <linearGradient id="fade"><stop stop-color="white" stop-opacity="0"/><stop offset=".53" stop-color="white" stop-opacity=".12"/><stop offset="1" stop-color="white" stop-opacity=".7"/></linearGradient>
+    <mask id="mask"><path fill="url(#fade)" d="M0 0h1440v650H0z"/></mask>
+  </defs>
+  <g mask="url(#mask)" fill="none" stroke="url(#glyphs)">
+    <ellipse cx="1100" cy="320" rx="250" ry="165" stroke-width="56" transform="rotate(-22 1100 320)"/>
+    <ellipse cx="1100" cy="320" rx="332" ry="228" stroke-width="36" transform="rotate(-22 1100 320)"/>
+    <ellipse cx="1100" cy="320" rx="405" ry="280" stroke-width="22" transform="rotate(-22 1100 320)"/>
+  </g>
+</svg>
